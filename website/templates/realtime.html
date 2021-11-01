@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width", initial-scale=1"/>
+        <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
+     <link rel="stylesheet" href="{{url_for('static',filename='realtime.css')}}">
+
+    <title>{% block title %}Real Time{% endblock %}</title>
+    <body>
+    <header>
+        <div class ="container">
+            <div class="logo">
+                    <a href="">FaceGym</a>
+            </div>
+            <a href="javascript:void(0)" class="ham-burger">
+                <span></span>
+                <span></span>
+            </a>
+            <div class="nav">
+                <ul>
+                   <li><a href="home">Home</a> </li>
+                    <li><a href="realtime">Real Time</a> </li>
+                    <li><a href="facilities">Facilities</a> </li>
+                    <li><a href="classes">Classes</a> </li>
+                    <li><a href="membership">Membership</a> </li>
+                    <li><a href="about_us">About</a> </li>
+                    {% if session['name']%}
+                    <li>
+                        <a>{{ session['name'] }}</a>
+                        <a href="logout">Logout</a>
+                    </li>
+                    {% else %}
+                    <li><a href="login">Login</a> </li>
+                    <li><a href="sign-up">Sign Up</a> </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <section class="home">
+        <div class="container">
+            <h1> Real Time People</h1>
+        </div>
+            <a href="#a" class="go-down">
+                <i class="fa fa-angle-down" aria-hidden="true"></i>
+            </a>
+    </section>
+
+    <div id="a" class="clock">
+    </div>
+    <script type="text/javascript">
+        function digital()
+        {
+            var date= new Date();
+            var a=":";
+            var h=date.getHours();
+            var m=date.getMinutes();
+            var s=date.getSeconds();
+            var session="PM";
+            h=check(h);
+            m=check(m);
+            s=check(s);
+            if(h>12)
+                {
+                    session="PM";
+                }
+            else
+                {
+                    session="AM"
+                }
+            if(h>12)
+                {
+                    h=h-12;
+                }
+            function check(i)
+            {
+                if(i<10)
+                    {
+                        i="0"+i;
+                    }
+                return i;
+            }
+
+            document.getElementById("a").innerHTML=h+a+m+a+s+" "+session;
+            setTimeout(digital,1000);
+         }
+         digital();
+
+    </script>
+    <div class="empty">
+        <h5>{{ userDetails }} Members <a href="realtime"><i class="fa fa-refresh"></i></a>
+        </h5>
+    </div>
+    <section class="contact">
+        <div class="container">
+            <div class="content">
+                <div class="box form">
+                    <form action="/home" method="POST">
+                        <input type="text" name="form-name" placeholder="Enter Name">
+                        <input type="text" name="form-email" placeholder="Enter Email">
+                        <input type="text" name="form-mobile" placeholder="Enter Mobile">
+                        <textarea placeholder="Enter Message" name="form-message"></textarea>
+                        {% if session['name']%}
+                        <button type="submit">Send Message</button>
+                        {% else %}
+                        <button type="submit"><a href="login" style="color:white">Send Message</a></button>
+                        {% endif %}
+                    </form>
+                </div>
+                <div class="box text">
+                    <h2> Get Connected with Us</h2>
+                    <p> This is our gym. Just join us. This is our gym. Just join us.
+                        This is our gym. Just join us. This is our gym. Just join us.</p>
+                    <div class="info">
+                        <ul>
+                            <li><span class="fa fa-map-marker"></span>11-1 Bayan Lepas, Pulau Pinang</li>
+                            <li><span class="fa fa-phone"></span>(60)11-22211223</li>
+                            <li><span class="fa fa-envelope"></span>info@facegym.com</li>
+                        </ul>
+                    </div>
+                    <div class="social">
+                        <a href=""><span class="fa fa-facebook"></span> </a>
+                        <a href=""><span class="fa fa-linkedin"></span> </a>
+                        <a href=""><span class="fa fa-skype"></span> </a>
+                        <a href=""><span class="fa fa-youtube-play"></span> </a>
+                    </div>
+                    <div class="copy">
+                        PowerBy &copy FaceGym
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+    </script>
+    <script>
+        $(document).ready(function(){
+            $(".ham-burger").click(function(){
+                $(".nav").toggleClass("open")
+                $(this).toggleClass("active")
+            })
+        })
+    </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

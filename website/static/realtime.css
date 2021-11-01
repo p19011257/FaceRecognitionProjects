@@ -1,0 +1,380 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap');
+@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+html{
+    scroll-behavior:smooth;
+}
+body{
+    margin:0;
+    padding:0;
+
+}
+*{
+    box-sizing : border-box;
+    margin:0;
+    padding:0;
+    font-family: 'Oswald', sans-serif;
+}
+
+header{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    z-index: 10;
+    background-color: #000000;
+    padding: 15px 15px;
+}
+
+header .container{
+    -webkit-display: flex;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header .logo a{
+    font-size: 30px;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+header .nav{
+    position: fixed;
+    background-color: #c11325;
+    width: 280px;
+    top: 0;
+    right:0;
+    height: 100%;
+    z-index: 99;
+    padding: 100px 0px 15px;
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+    -webkit-transition: transform .5s ease;
+    transition: transform .5s ease;
+}
+header .nav.open{
+    -webkit-transform:translateX(0);
+    transform:translateX(0);
+}
+header .nav ul{
+    list-style: none;
+    margin: 0;
+    padding: 0px;
+}
+
+header .nav ul li{
+    display: block;
+}
+
+header .nav ul li a{
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: 400;
+    color:#ffffff;
+    display: block;
+    position: relative;
+    padding:10px 30px;
+}
+
+header .nav ul li a::before{
+    content: '';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    width: 0px;
+    background-color:#000000;
+    opacity:.2;
+    -webkit-transition: width .5s ease;
+    transition: width .5s ease;
+    z-index: -1;
+}
+
+header .nav ul li a:hover::before{
+    width: 180%;
+}
+header .ham-burger{
+    display: inline-block;
+    position: relative;
+    z-index: 100;
+}
+
+header .ham-burger span{
+    height: 3px;
+    margin-bottom: 8px;
+    display: block;
+    background-color:#ffffff;
+    width:30px;
+    -webkit-transition: transform .5s ease;
+    transition: transform .5s ease;
+}
+header .ham-burger span:nth-child(1){
+    transform-origin: left top;
+}
+
+header .ham-burger span:nth-child(2){
+    transform-origin: left bottom;
+}
+
+header .ham-burger.active span:nth-child(1){
+    -webkit-transform: rotate(45deg) translateY(-6px);
+    transform: rotate(45deg) translateY(-6px);
+}
+
+header .ham-burger.active span:nth-child(2){
+    -webkit-transform: rotate(-45deg) translateY(6px);
+    transform: rotate(-45deg) translateY(6px);
+}
+
+.container{
+    max-width: 11700px;
+    margin:auto;
+}
+
+.home{
+    height: 100vh;
+    background: url("/static/images/facilities.jpg");
+    background-size:cover;
+    padding:10px;
+    -webkit-display: flex;
+    display: flex;
+    position: relative;
+}
+
+.home .go-down{
+    position:absolute;
+    bottom: 50px;
+    width: 26px;
+    height: 40px;
+    border: 1px solid #ffffff;
+    display: block;
+    border-radius: 4px;
+    text-align:center;
+    left:50%;
+    margin-left: -13px;
+}
+
+.home .go-down .fa{
+    color: #ffffff;
+    -webkit-animation: goDown 1s ease infinite;
+    animation: goDown 1s ease infinite;
+}
+@keyframes goDown{
+    0%{transform: translateY(0);opacity:.5}
+    100%{transform: translateY(10px);}
+}
+
+@-webkit-keyframes goDown{
+    0%{transform: translateY(0);opacity:.5}
+    100%{transform: translateY(10px);}
+}
+
+.home .container{
+    -webkit-display:flex;
+    display:flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.home h1{
+    color: #ffffff;
+    font-size: 80px;
+    font-weight: 700;
+    text-align: center;
+    margin:0;
+}
+
+.home p{
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: 700;
+    text-align: center;
+    margin:0;
+}
+
+.empty{
+    background-color:#ffffff;
+    display:flex;
+    flex-direction: column;
+}
+.empty h5{
+    font-size: 50px;
+    font-weight: 1000;
+    color: #c11325;
+    padding: 30px 0px 30px;
+    text-align: center;
+}
+
+.empty i{
+    font-size: 20px;
+    color: #000000;
+    items-align: center;
+}
+
+.about{
+    padding: 80px 15px;
+    background-color:#505050;
+}
+
+.clock{
+    background-color:#dddddd;
+    display:flex;
+    flex-direction: column;
+    text-align:center;
+    color:#c11325;
+    font-size:100px;
+    letter-spacing: 10px;
+}
+
+.about .content{
+    -webkit-display:flex;
+    display:flex;
+}
+.about .content .box{
+    flex:0 0 33.33%;
+    max-width: 33.33%;
+    padding: 15px;
+}
+
+.about .content .box .inner .img img{
+    width:100%;
+}
+
+.about .content .box .inner .img span{
+    text-align:center;
+    color: #ffffff;
+}
+
+.contact{
+    padding:80px 0px;
+    background-color: #222222;
+}
+
+
+.contact .content{
+    -webkit-display: flex;
+    display: flex;
+}
+
+.contact .content .box{
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding: 15px;
+}
+
+.contact .content .form input,
+.contact .content .form textarea{
+    height: 45px;
+    width: 100%;
+    padding: 6px 12px;
+    margin-bottom: 15px;
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    font-size:15px;
+    font-family:'Open-sans', sans-serif;
+    color:#ffffff;
+}
+.contact .content .form input:focus,
+.contact .content .form textarea:focus{
+    outline:none;
+}
+
+.contact .content .form input::placeholder,
+.contact .content .form textarea::placeholder{
+    color:#ffffff;
+}
+.contact .content .form textarea{
+    height: 100px;
+}
+
+.contact .content .form button{
+    border: none;
+    outline: none;
+    box-shadow: none;
+    height: 45px;
+    padding: 0px 30px;
+    border:1px solid transparent;
+    background-color: #c11325;
+    color: #ffffff;
+    font-size: 15px;
+    transition: all .5s ease;
+}
+
+.contact .content .form button:hover{
+    background-color: transparent;
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
+.contact .content .text h2{
+    font-size: 30px;
+    font-weight: 500;
+    color: #c11325;
+    padding: 0px 0px 30px;
+
+}
+
+.contact .content .text p{
+    font-size: 15px;
+    line-height: 20px;
+    color: #ffffff;
+    margin: 0;
+    padding: 0px 0px 20px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.contact .content .text .info ul{
+    list-style: none;
+    padding:0;
+    margin:0;
+}
+
+.contact .content .text .info li{
+    display: block;
+    margin-bottom: 10px;
+    color: #ffffff;
+    font-size: 15px;
+    letter-spacing: 2px;
+    position: relative;
+    padding-left: 30px;
+}
+
+.contact .content .text .info li span{
+    display: inline-block;
+    position: absolute;
+    left: 0px;
+    top:5px;
+    font-size: 15px;
+    color:#c11325;
+}
+
+.contact .content .text .social a{
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #c11325;
+    display: inline-block;
+    margin-right: 10px;
+    transition: all .5s ease;
+    border: 1px solid transparent;
+}
+
+.contact .content .text .social a:hover{
+    background-color: transparent;
+    border-color: #ffffff;
+}
+
+.contact .content .text .social a span{
+    color: #ffffff;
+    font-size: 20px;
+}
+
+.contact .content .text .copy{
+    border-top:1px solid #333333;
+    margin-top: 30px;
+    padding-top: 20px;
+    color: #c5c5c5;
+    font-size: 15px;
+}

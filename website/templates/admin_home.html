@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width", initial-scale=1"/>
+        <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
+     <link rel="stylesheet" href="{{url_for('static',filename='admin-style.css')}}">
+
+    <title>{% block title %}Admin Home{% endblock %}</title>
+    <body>
+    <header>
+        {% block content%}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for msg in messages%}
+                    <p>{{msg}}</p>
+                {%endfor%}
+            {% endif %}
+        {% endwith %}
+        <div class ="container">
+            <div class="logo">
+                    <a href="">FaceGym Admin</a>
+            </div>
+            <a href="javascript:void(0)" class="ham-burger">
+                <span></span>
+                <span></span>
+            </a>
+            <div class="nav">
+                <ul>
+                   <li><a href="admin_home">Home</a> </li>
+                    <li><a href="admin_dashboard">Dashboard</a> </li>
+                     {% if session['name']%}
+                    <li>
+                        <a href="admin_logout">Logout</a>
+                    </li>
+                    {% else %}
+                    <li><a href="admin_login">Login</a> </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        {%endblock%}
+    </header>
+    {% if session['name']%}
+    <div id="a" class="clock">
+    </div>
+     <div class="empty">
+        <h5>{{ userDetails }} Members <a href="admin_home"><i class="fa fa-refresh"></i></a>
+        </h5>
+    </div>
+    <script type="text/javascript">
+        function digital()
+        {
+            var date= new Date();
+            var a=":";
+            var h=date.getHours();
+            var m=date.getMinutes();
+            var s=date.getSeconds();
+            var session="PM";
+            h=check(h);
+            m=check(m);
+            s=check(s);
+            if(h>12)
+                {
+                    session="PM";
+                }
+            else
+                {
+                    session="AM"
+                }
+            if(h>12)
+                {
+                    h=h-12;
+                }
+            function check(i)
+            {
+                if(i<10)
+                    {
+                        i="0"+i;
+                    }
+                return i;
+            }
+
+            document.getElementById("a").innerHTML=h+a+m+a+s+" "+session;
+            setTimeout(digital,1000);
+         }
+         digital();
+    </script>
+
+    <div class="attend">
+
+        <div class="box">
+            <h6><a href="index">Clock In</a></h6>
+        </div>
+
+        <div class="box">
+            <h6> <a href="clockout">Clock Out</a> </h6>
+        </div>
+    </div>
+    {% else %}
+    <meta http-equiv='refresh' content='0; URL=admin_login'>
+    {% endif %}
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+    </script>
+    <script>
+        $(document).ready(function(){
+            $(".ham-burger").click(function(){
+                $(".nav").toggleClass("open")
+                $(this).toggleClass("active")
+            })
+        })
+    </script>
+    </body>
+</html>

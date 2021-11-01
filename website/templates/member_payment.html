@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width", initial-scale=1"/>
+        <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
+<title>{% block title %}Your Payment{% endblock %}</title>
+<link rel="stylesheet" href="{{url_for('static',filename='member_payment.css')}}">
+<body>
+<header>
+        <div class ="container">
+            <div class="logo">
+                    <a href="">FaceGym</a>
+            </div>
+            <a href="javascript:void(0)" class="ham-burger">
+                <span></span>
+                <span></span>
+            </a>
+            <div class="nav">
+                <ul>
+                   <li><a href="home">Home</a> </li>
+                    <li><a href="realtime">Real Time</a> </li>
+                    <li><a href="facilities">Facilities</a> </li>
+                    <li><a href="classes">Classes</a> </li>
+                    <li><a href="membership">Membership</a> </li>
+                    <li><a href="about_us">About</a> </li>
+                    {% if session['name']%}
+                    <li>
+                        <a>{{ session['name'] }}</a>
+                        <a href="logout">Logout</a>
+                    </li>
+                    {% else %}
+                    <li><a href="login">Login</a> </li>
+                    <li><a href="sign-up">Sign Up</a> </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+
+    </header>
+<section class="membertable">
+    <table>
+        <tr id="header">
+            <th>User</th>
+            <th>Amount</th>
+            <th>Date Expired</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        {% for row in paymentData %}
+        <tr>
+            <td>{{row[2]}}</td>
+            <td>RM{{row[3]}}</td>
+            <td>{{row[5]}}</td>
+            <td>{{row[6]}}</td>
+            <td><a href="member_monthlypayment">Pay Now</a></td>
+
+        </tr>
+        {% endfor %}
+    </table>
+</section>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+    </script>
+    <script>
+        $(document).ready(function(){
+            $(".ham-burger").click(function(){
+                $(".nav").toggleClass("open")
+                $(this).toggleClass("active")
+            })
+        })
+    </script>
+</body>
+</html>

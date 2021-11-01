@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- library validate -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.js"></script>
+    <!-- style css -->
+     <link rel="stylesheet" href="{{url_for('static',filename='payment_detail.css')}}">
+     <meta http-eqiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}Checkout Page{% endblock %}</title>
+</head>
+    <body>
+    <h2> Checkout Form</h2>
+    <div class="mytabs">
+    <input type="radio" id="tabcard" name="mytabs" checked="checked">
+    <label for="tabcard"> <a href="payment_detail3">Card</a></label>
+    <input type="radio" id="tabwallet" name="mytabs">
+    <label for="tabwallet"><a href="wallet_payment3">Wallet</a></label>
+     </div>
+    <div class="row">
+        <div class="col-75">
+            <div class="container">
+                <h2>Card Payment</h2>
+                <form action="/payment_detail3" method="POST" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-50">
+                            <h3>Payment</h3>
+                            <label>Accepted Cards</label>
+                            <input type="hidden" id="email" name="email" value="{{ session['email'] }}">
+                            <input type="hidden" id="price" name="price" value="88">
+                            <input type="hidden" id="package" name="package" value="Gold Pack">
+                            <div class="icon-container">
+                            <i class="fa fa-cc-visa" style="color:navy;"></i>
+                            <i class="fa fa-cc-mastercard" style="color:blue;"></i>
+                            </div>
+
+                            <label for="cname">Name on Card</label>
+                            <input type="text" id="cname" name="cname" placeholder="Name as the card"required>
+                            <label for="ccnum">Credit card number</label>
+                            <input type="text" id="ccnum" name="ccnum" placeholder="Card Number"required>
+                            <label for="expmonth">Exp Month</label>
+                            <input type="text" id="expmonth" name="expmonth" placeholder="Expired Month"required>
+                            <div class="row">
+                            <div class="col-50">
+                                <label for="expyear">Exp Year</label>
+                                <input type="text" id="expyear" name="expyear" placeholder="Expired Year"required>
+                            </div>
+                            <div class="col-50">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" name="cvv" placeholder="CVV"required>
+                            </div>
+                             <div class="col-50">
+                                <label for="file">Front Face Picture</label>
+                                <input type="file"id ="file" name="file" autocomplete="off" required>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <input type="submit" value="Cancel" class="cancel">
+                    <input type="submit" value="Checkout" class="btn">
+                </form>
+            </div>
+        </div>
+        <div class="col-25">
+        <div class="container">
+            <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i></span></h4>
+            <p>Package<span class="price" name="package">Gold Pack</span></p>
+            <p>Duration <span class="price">Until Canceled</span></p>
+            <p>Sessions <span class="price">Unlimited </span></p>
+            <hr>
+            <p>Total <span class="price" name="price" style="color:black"><b>RM88.00</b></span></p>
+        </div>
+    </div>
+    </div>
+    </body>
+</html>

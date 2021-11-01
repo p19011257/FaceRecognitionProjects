@@ -1,0 +1,142 @@
+{% if session['name']%}
+<title>View Members Payment</title>
+<link rel="stylesheet" href="{{url_for('static',filename='vendor/fontawesome-free/css/all.min.css')}}">
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+<link rel="stylesheet" href="{{url_for('static',filename='css/sb-admin-2.min.css')}}">
+<link rel="stylesheet" href="{{url_for('static',filename='admin_comments.css')}}">
+<body id="page-top">
+ <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin_dashboard">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-dumbbell"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">FaceGym Admin Page</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="admin_dashboard">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Interfaces
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+           <li class="nav-item">
+                <a class="nav-link collapsed" href="admin_home" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-home fa-cog"></i>
+                    <span>Homepage</span>
+                </a>
+            </li>
+
+             <li class="nav-item">
+                <a class="nav-link collapsed" href="admin_viewmembers" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-users fa-cog"></i>
+                    <span>View Members</span>
+                </a>
+            </li>
+
+             <li class="nav-item">
+                <a class="nav-link collapsed" href="admin_payment" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-status fa-cog"></i>
+                    <span>Payment Status</span>
+                </a>
+            </li>
+
+             <li class="nav-item">
+                <a class="nav-link collapsed" href="admin_comments" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-comment fa-cog"></i>
+                    <span>Comments</span>
+                </a>
+            </li>
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="admin_logout" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-user-cog"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>
+     <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h4 class="h3 mb-0 text-gray-800">Payment</h4>
+                        <a href="{{ url_for('.download_payment') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                    </div>
+                     <hr class="sidebar-divider d-none d-md-block">
+                </div>
+            </div>
+     </div>
+    <table>
+      <tr id="header">
+            <th>User</th>
+            <th>Amount</th>
+            <th>Date Expired</th>
+            <th>Status</th>
+        </tr>
+        {% for row in paymentData %}
+        <tr>
+            <td>{{row[2]}}</td>
+            <td>RM{{row[3]}}</td>
+            <td>{{row[5]}}</td>
+            <td>{{row[6]}}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+      <!-- Bootstrap core JavaScript-->
+    <script src="{{url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="{{url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="{{url_for('static', filename='js/sb-admin-2.min.js')}}"></script>
+    <!-- Page level plugins -->
+    <script src="{{url_for('static', filename='vendor/chart.js/Chart.min.js')}}"></script>
+    <!-- Page level custom scripts -->
+    <script src="{{url_for('static', filename='js/demo/chart-area-demo.js')}}"></script>
+    <script src="{{url_for('static', filename='js/demo/chart-pie-demo.js')}}"></script>
+
+</body>
+{% else %}
+<meta http-equiv='refresh' content='0; URL=admin_login'>
+{% endif %}

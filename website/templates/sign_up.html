@@ -1,0 +1,87 @@
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width", initial-scale=1"/>
+             <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
+
+     <link rel="stylesheet" href="{{url_for('static',filename='signup-style.css')}}">
+
+    <title>{% block title %}Sign Up{% endblock %}</title>
+    </head>
+<body>
+    <header>
+        {% block content%}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for msg in messages%}
+                    <p>{{msg}}</p>
+                {%endfor%}
+            {% endif %}
+        {% endwith %}
+        <div class ="container">
+            <div class="logo">
+                    <a href="">FaceGym</a>
+            </div>
+            <a href="javascript:void(0)" class="ham-burger">
+                <span></span>
+                <span></span>
+            </a>
+            <div class="nav">
+                <ul>
+                   <li><a href="home">Home</a> </li>
+                    <li><a href="realtime">Real Time</a> </li>
+                    <li><a href="facilities">Facilities</a> </li>
+                    <li><a href="classes">Classes</a> </li>
+                    <li><a href="membership">Membership</a> </li>
+                    <li><a href="about_us">About</a> </li>
+                    {% if session['name']%}
+                    <li>
+                        <a>{{ session['name'] }}</a>
+                        <a href="logout">Logout</a>
+                    </li>
+                    {% else %}
+                    <li><a href="login">Login</a> </li>
+                    <li><a href="sign-up">Sign Up</a> </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+     {%endblock%}
+    </header>
+
+    <form class="box" action="/sign-up" method="POST" enctype="multipart/form-data">
+        <h1>Sign Up</h1>
+        <input type="email" name="email" placeholder="Enter Email Address">
+        <input type="name" name="name" placeholder="Enter Your Name">
+        <input type="phone" name="phone" placeholder="Enter Phone Number">
+        <input type="password" name="password1" placeholder="Enter Password">
+        <input type="password" name="password2" placeholder="Re-Enter Password">
+        <input type="submit" name="" value="Sign Up">
+    </form>
+
+
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+    </script>
+    <script>
+        $(document).ready(function(){
+            $(".ham-burger").click(function(){
+                $(".nav").toggleClass("open")
+                $(this).toggleClass("active")
+            })
+        })
+    </script>
+
+
+</body>
+
+</html>
