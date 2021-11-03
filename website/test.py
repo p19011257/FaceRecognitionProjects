@@ -107,14 +107,14 @@ def gen_frames():
         for encodeFace, faceLoc in zip(encodesCurFrame, facesCurFrame): #will search in same time of the encoded face and the location face from the webcam
             matches = face_recognition.compare_faces(encodeListKnown, encodeFace) #compare the both encoded faces (return True if matches, else False)
             faceDis = face_recognition.face_distance(encodeListKnown, encodeFace)# compare the distance of both encoded faces(the more lesser is more nearest the matches)
-            print("matches:",matches) #it will return true and false
+            #print("matches:",matches) #it will return true and false
             print("Face Distance:",faceDis) #it will return the distance
             matchIndex = np.argmin(faceDis) #it will retrieve the value which is the most lesser
             #print(matchIndex[matchIndex])
 
             if matches[matchIndex]: #return the index such as 0 for first element in list if the distance the most accurate
                 name = classNames[matchIndex].upper() #will uppercase the name based on the classNames list
-                #print(name)
+                print(name)
                 #settings of the rectange in webcam
                 y1, x2, y2, x1 = faceLoc #it will based on the face location which getting from the encodesCurFrame variable
                 y1, x2, y2, x1 = y1 * 4, x2 * 4, y2 * 4, x1 * 4 #multiple 4 because it resize into 1/4 during the image processing
